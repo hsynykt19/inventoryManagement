@@ -1,17 +1,14 @@
 server:
   port: 8080
-
 spring:
   application:
     name: inventory-management
   datasource:
-    url: jdbc:h2:mem:test
-    driver-class-name: org.h2.Driver
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    username: root
+    url: jdbc:mysql://localhost:3306/inventory
+    password: '1234'
   jpa:
-    properties:
-      hibernate:
-        dialect: org.hibernate.dialect.H2Dialect
-    database-platform: org.hibernate.dialect.H2Dialect
     hibernate:
       ddl-auto: update
-    show-sql: true
+
