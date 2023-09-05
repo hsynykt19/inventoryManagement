@@ -173,45 +173,5 @@ public class ProductControllerTest {
         depot.setId(depotId);
         return depot;
     }
-//
-//    @MockBean
-//    private ProductService productService;
-
-//    @Test
-//    void it_should_validate_otp() throws Exception {
-//        // GIVEN
-//        ProductRequest productRequest = ProductRequest.builder()
-//                .name("samsung @led")
-//                .categoryName("TV")
-//                .criticalThreshold(5)
-//                .depotId(5L)
-//                .quantity(7)
-//                .build();
-////        productRequest.setName(null);
-//
-//        InventoryResponse inventoryResponse = new InventoryResponse();
-//        ArgumentCaptor<ProductRequest> argumentCaptor = ArgumentCaptor.forClass(ProductRequest.class);
-//        Mockito.when(productService.create(argumentCaptor.capture())).thenReturn(inventoryResponse);
-//
-//        // WHEN
-//        MvcResult result = mvc.perform(post("/inventory/products")
-//                .contentType(MediaType.APPLICATION_JSON)
-//                .content(objectMapper.writeValueAsString(productRequest)))
-//                .andDo(print())
-//                .andExpect(status().isOk())
-//                .andReturn();
-//
-//        // THEN
-//        InventoryResponse response = objectMapper.readValue(result.getResponse().getContentAsString(), InventoryResponse.class);
-//        Assertions.assertThat(response).isNotNull();
-//        Assertions.assertThat(argumentCaptor.getValue().getCategoryName()).isEqualTo("TV");
-//        Assertions.assertThat(argumentCaptor.getValue().getCriticalThreshold()).isEqualTo(5);
-//        Assertions.assertThat(argumentCaptor.getValue().getDepotId()).isEqualTo(5);
-//        Assertions.assertThat(argumentCaptor.getValue().getName()).isEqualTo("5454");
-//        Assertions.assertThat(argumentCaptor.getValue().getQuantity()).isEqualTo(150);
-//
-//        Mockito.verify(productService).create(argumentCaptor.getValue());
-//        Mockito.verifyNoMoreInteractions(productService);
-//    }
 
 }
