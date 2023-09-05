@@ -1,12 +1,3 @@
-/*
- * Copyright (c) 2012-
- * Vodafone Teknoloji Hizmetleri A.S., Istanbul, Turkey
- *
- * All rights reserved. This Software or any portion of it can not be translated,
- * distributed, sold, adapted, arranged, used, copied, modified, de-compiled,
- * reverse assembled or otherwise reverse engineered, disassembled, replaced or made
- * additions to and to be reproduced in whole or in part, in any way, manner or form.
- */
 
 package com.inventoryManagement.config;
 
@@ -24,9 +15,9 @@ public class SwaggerConfig {
     @Bean
     public Docket api() {
         return new Docket(DocumentationType.SWAGGER_2)
-          .select()                                  
-          .apis(RequestHandlerSelectors.any())
-          .paths(PathSelectors.any())
-          .build();                                           
+                .select()
+                .apis(RequestHandlerSelectors.any())
+                .paths(PathSelectors.any())
+                .build();
     }
 }

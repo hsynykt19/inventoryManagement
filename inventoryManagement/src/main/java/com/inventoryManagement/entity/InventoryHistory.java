@@ -27,6 +27,7 @@ public class InventoryHistory {
     @Column(name = "DEPOT_ID")
     private Long depotId;
 
+    @Enumerated(EnumType.STRING)
     @Column(name = "TYPE")
     private EnumActionType type;
 

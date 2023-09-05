@@ -1,6 +1,5 @@
 package com.inventoryManagement.service;
 
-import com.inventoryManagement.entity.Product;
 import com.inventoryManagement.model.ProductRequest;
 import com.inventoryManagement.model.InventoryResponse;
 import com.inventoryManagement.model.ProductResponseDto;

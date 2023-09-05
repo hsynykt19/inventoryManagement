@@ -12,14 +12,11 @@ import com.inventoryManagement.repository.CategoryRepository;
 import com.inventoryManagement.repository.DepotRepository;
 import com.inventoryManagement.repository.InventoryHistoryRepository;
 import com.inventoryManagement.repository.ProductRepository;
-import com.inventoryManagement.service.ProductService;
-import org.assertj.core.api.Assertions;
+
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+
 import org.junit.jupiter.api.Test;
-import org.mockito.ArgumentCaptor;
-import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -31,14 +28,12 @@ import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 
 import java.time.LocalDateTime;
-import java.util.List;
+
 import java.util.Optional;
 
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
-import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+
 @AutoConfigureMockMvc
 @SpringBootTest
 public class ProductControllerTest {
@@ -56,7 +51,7 @@ public class ProductControllerTest {
     @MockBean
     DepotRepository depotRepository;
     @MockBean
-     InventoryHistoryRepository historyRepository;
+    InventoryHistoryRepository historyRepository;
     @Autowired
     private ProductController productController;
 
@@ -69,6 +64,7 @@ public class ProductControllerTest {
                         .content(JsonUtil.objectToJson(productRequest)))
                 .andExpect(status().isBadRequest());
     }
+
     @Test
     public void ProductRequestCheckNameIsNull() throws Exception {
         ProductRequest productRequest = new ProductRequest();
@@ -83,6 +79,7 @@ public class ProductControllerTest {
                         .content(JsonUtil.objectToJson(productRequest)))
                 .andExpect(status().isBadRequest());
     }
+
     @Test
     public void ProductRequestCheckDepoId() throws Exception {
         ProductRequest productRequest = new ProductRequest();
@@ -97,6 +94,7 @@ public class ProductControllerTest {
                         .content(JsonUtil.objectToJson(productRequest)))
                 .andExpect(status().isBadRequest());
     }
+
     @Test
     public void ProductRequestCheckCategoryName() throws Exception {
         ProductRequest productRequest = new ProductRequest();
@@ -111,6 +109,7 @@ public class ProductControllerTest {
                         .content(JsonUtil.objectToJson(productRequest)))
                 .andExpect(status().isBadRequest());
     }
+
     @Test
     public void ProductRequestCreate() throws Exception {
         ProductRequest productRequest = getProductRequest();
@@ -124,12 +123,13 @@ public class ProductControllerTest {
                         .content(JsonUtil.objectToJson(productRequest)))
                 .andExpect(status().isOk());
     }
+
     @Test
     public void ProductRequestFilter() throws Exception {
         ProductRequest productRequest = getProductRequest();
         Depot depot = createDepot(productRequest.getDepotId());
         Category category = createCategory(productRequest);
-        Product product=new Product();
+        Product product = new Product();
         productRequest.setName("Samsung");
         productRequest.setDepotId(depot.getId());
         productRequest.setQuantity(productRequest.getQuantity());
@@ -138,8 +138,8 @@ public class ProductControllerTest {
         productRequest.setCriticalThreshold(productRequest.getCriticalThreshold());
         when(productRepository.findById(any())).thenReturn(Optional.of(product));
 //        when(categoryRepository.findFirstByNameIgnoreCase(any())).thenReturn(Optional.of(category));
-       this.result= this.mockMvc.perform(get("/inventory/products/filter").param("productId","5l").header(HttpHeaders.AUTHORIZATION,""))
-               .andExpect(status().isOk()).andReturn();
+        this.result = this.mockMvc.perform(get("/inventory/products/filter").param("productId", "5l").header(HttpHeaders.AUTHORIZATION, ""))
+                .andExpect(status().isOk()).andReturn();
         this.productResponseDto = objectMapper.readValue(result.getResponse().getContentAsString(),
                 ProductResponseDto.class);
 
@@ -157,13 +157,13 @@ public class ProductControllerTest {
     }
 
     private Category createCategory(ProductRequest productRequest) {
-        Category category=new Category();
+        Category category = new Category();
         category.setName(productRequest.getCategoryName());
         return category;
     }
 
     private Depot createDepot(Long depotId) {
-        Depot depot=new Depot();
+        Depot depot = new Depot();
         depot.setName("maltepe-depo");
         depot.setRegion("marmara");
         depot.setAddress("maltepe-küçükyalı");
